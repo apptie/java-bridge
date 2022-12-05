@@ -25,11 +25,11 @@ public enum BridgeTile {
                             BridgeTileConst.PLAYER_MOVE_UP, BridgeTileConst.PLAYER_MOVE_DOWN)));
     }
 
-    public static String mapToCommand(BridgeTile targetTile) {
-        if (targetTile == BridgeTile.DOWN) {
+    public static String mapToCommand(int bridgeTileValue) {
+        if (bridgeTileValue == BridgeTile.DOWN.value) {
             return BridgeTile.DOWN.command;
         }
-        if (targetTile == BridgeTile.UP) {
+        if (bridgeTileValue == BridgeTile.UP.value) {
             return BridgeTile.UP.command;
         }
         throw new WrongGeneratorException(BridgeTileConst.UP_TILE_VALUE, BridgeTileConst.DOWN_TILE_VALUE);
