@@ -35,6 +35,10 @@ public enum BridgeTile {
         throw new WrongGeneratorException(BridgeTileConst.UP_TILE_VALUE, BridgeTileConst.DOWN_TILE_VALUE);
     }
 
+    public boolean matches(BridgeTile targetTile) {
+        return this == targetTile;
+    }
+
     private static class BridgeTileConst {
         private static final String PLAYER_MOVE_UP = "U";
         private static final String PLAYER_MOVE_DOWN = "D";
