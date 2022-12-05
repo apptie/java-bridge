@@ -19,11 +19,11 @@ class BridgeTileTest {
 
             @ParameterizedTest
             @CsvSource(
-                value = {
-                    "D:DOWN",
-                    "U:UP"
-                },
-                delimiter = ':'
+                    value = {
+                        "D:DOWN",
+                        "U:UP"
+                    },
+                    delimiter = ':'
             )
             @DisplayName("커맨드가 일치하는 BridgeTile을 반환한다")
             void it_returns_bridgeTile(String command, BridgeTile expectedTile) {
@@ -44,15 +44,15 @@ class BridgeTileTest {
 
             @ParameterizedTest
             @CsvSource(
-                value = {
-                    "DOWN:D",
-                    "UP:U"
-                },
-                delimiter = ':'
+                    value = {
+                        "0:D",
+                        "1:U"
+                    },
+                    delimiter = ':'
             )
             @DisplayName("다리의 칸에 해당하는 커맨드를 반환한다")
-            void it_returns_bridgeCommand(BridgeTile bridgeTile, String expectedCommand) {
-                String actualCommand = BridgeTile.mapToCommand(bridgeTile);
+            void it_returns_bridgeCommand(int bridgeTileValue, String expectedCommand) {
+                String actualCommand = BridgeTile.mapToCommand(bridgeTileValue);
 
                 assertThat(actualCommand).isEqualTo(expectedCommand);
             }
