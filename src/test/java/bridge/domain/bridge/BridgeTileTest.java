@@ -58,4 +58,31 @@ class BridgeTileTest {
             }
         }
     }
+
+    @Nested
+    @DisplayName("matches 메소드는")
+    class DescribeMatchesMethodTest {
+
+        @Nested
+        @DisplayName("만약 다리 칸과 동일한지 비교해야 하는 BridgeTile이 주어지면")
+        class ContextWithBridgeTileTest {
+
+            @ParameterizedTest
+            @CsvSource(
+                    value = {
+                        "UP:UP:true",
+                        "UP:DOWN:false",
+                        "DOWN:UP:false",
+                        "DOWN:DOWN:true"
+                    },
+                    delimiter = ':'
+            )
+            @DisplayName("다리 칸과 일치하는지 여부를 반환한다")
+            void it_returns_matchesBridgeTile(BridgeTile bridgeTile, BridgeTile targetTile, boolean expected) {
+                boolean actual = bridgeTile.matches(targetTile);
+
+                assertThat(actual).isSameAs(expected);
+            }
+        }
+    }
 }
