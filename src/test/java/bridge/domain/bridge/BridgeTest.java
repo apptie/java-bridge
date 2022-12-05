@@ -8,6 +8,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.bridge.exception.WrongGeneratorException;
 import bridge.domain.player.PlayerState;
+import bridge.helper.common.CommonStubBridgeGeneratorField;
 import bridge.helper.stub.StubBridgeNumberGenerator;
 import bridge.helper.stub.StubPlayerState;
 import java.util.List;
@@ -109,11 +110,6 @@ class BridgeTest {
                 assertThat(actual).isSameAs(3);
             }
         }
-    }
-
-    private static class CommonStubBridgeGeneratorField {
-
-        protected BridgeNumberGenerator stubGenerator = new StubBridgeNumberGenerator(List.of(0, 0, 0));
     }
 
     private static abstract class CommonBridgeField extends CommonStubBridgeGeneratorField {

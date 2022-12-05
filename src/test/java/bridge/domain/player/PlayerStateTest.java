@@ -131,7 +131,7 @@ class PlayerStateTest {
         }
     }
 
-    private static class CommonNormalPlayerStateBeforeEach {
+    private abstract static class CommonNormalPlayerStateBeforeEach {
 
         protected PlayerState playerState;
 
@@ -141,7 +141,7 @@ class PlayerStateTest {
         }
     }
 
-    private static class CommonBridgeTilesField {
+    private abstract static class CommonBridgeTilesField {
 
         protected final List<BridgeTile> bridgeTiles = List.of(BridgeTile.DOWN, BridgeTile.UP);
     }
