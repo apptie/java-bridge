@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.domain.bridge.BridgeTile;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
