@@ -25,7 +25,6 @@ public class InputView {
     }
 
     public ReadBridgeSizeDto readBridgeSize() {
-        print(GuideMessage.APPLICATION_START.message);
         print(GuideMessage.MAKE_BRIDGE.message);
         int inputBridgeSize = processInputBridgeSize();
 
@@ -88,8 +87,6 @@ public class InputView {
     }
 
     private enum GuideMessage {
-        APPLICATION_START("다리 건너기 게임을 시작합니다."),
-
         MAKE_BRIDGE("다리의 길이를 입력해주세요."),
 
         GAME_PLAY("이동할 칸을 선택해주세요. (위: %s, 아래: %s)",

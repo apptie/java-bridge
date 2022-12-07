@@ -10,6 +10,8 @@ public class OutputView {
     private static final String LINE_FEED = "";
 
     private OutputView() {
+        print(OutputViewMessage.APPLICATION_START.findFullMessage());
+        print(LINE_FEED);
     }
 
     private static class OutputViewSingletonHelper {
@@ -24,27 +26,27 @@ public class OutputView {
         String upBridgeHistory = printMapDto.getUpBridgeHistory();
         String downBridgeHistory = printMapDto.getDownBridgeHistory();
 
-        print(OutputViewMessage.HISTORY_FORMAT.getFullMessage(upBridgeHistory));
-        print(OutputViewMessage.HISTORY_FORMAT.getFullMessage(downBridgeHistory));
+        print(OutputViewMessage.HISTORY_FORMAT.findFullMessage(upBridgeHistory));
+        print(OutputViewMessage.HISTORY_FORMAT.findFullMessage(downBridgeHistory));
         print(LINE_FEED);
     }
 
     public void printResult(PrintResultDto printResultDto) {
-        print(OutputViewMessage.GAME_RESULT_GUIDE.getFullMessage());
+        print(OutputViewMessage.GAME_RESULT_GUIDE.findFullMessage());
         printMap(printResultDto.getPrintMapDto());
 
         PrintGameInfoDto printGameInfoDto = printResultDto.getPrintGameInfoDto();
         boolean success = printGameInfoDto.isSuccess();
         long tryCount = printGameInfoDto.getTryCount();
 
-        print(OutputViewMessage.GAME_RESULT.getFullMessage(GameSuccessMessage.MapToMessage(success)));
-        print(OutputViewMessage.GAME_TRY_COUNT.getFullMessage(tryCount));
+        print(OutputViewMessage.GAME_RESULT.findFullMessage(GameSuccessMessage.MapToMessage(success)));
+        print(OutputViewMessage.GAME_TRY_COUNT.findFullMessage(tryCount));
     }
 
     public void printException(PrintExceptionDto printExceptionDto) {
         String exceptionMessage = printExceptionDto.getMessage();
 
-        print(OutputViewMessage.EXCEPTION.getFullMessage(exceptionMessage));
+        print(OutputViewMessage.EXCEPTION.findFullMessage(exceptionMessage));
     }
 
     private void print(String message) {
@@ -52,6 +54,7 @@ public class OutputView {
     }
 
     private enum OutputViewMessage {
+        APPLICATION_START("다리 건너기 게임을 시작합니다."),
         EXCEPTION("[ERROR] %s"),
         HISTORY_FORMAT("[ %s ]"),
         GAME_RESULT_GUIDE("최종 게임 결과"),
@@ -64,7 +67,7 @@ public class OutputView {
             this.baseFormat = baseFormat;
         }
 
-        private String getFullMessage(Object... replace) {
+        private String findFullMessage(Object... replace) {
             return String.format(baseFormat, replace);
         }
     }
