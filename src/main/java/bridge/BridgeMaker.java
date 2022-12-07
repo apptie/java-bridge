@@ -4,6 +4,7 @@ import bridge.domain.bridge.BridgeTile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class BridgeMaker {
 
@@ -14,21 +15,10 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
-        List<Integer> bridgeNumbers = makeBridgeNumbers(size);
-
-        return bridgeNumbers
-                .stream()
-                .map(BridgeTile::mapToCommand)
+        return IntStream
+                .generate(bridgeNumberGenerator::generate)
+                .limit(size)
+                .mapToObj(BridgeTile::mapToCommand)
                 .collect(Collectors.toList());
-    }
-
-    private List<Integer> makeBridgeNumbers(int size) {
-        List<Integer> bridge = new ArrayList<>();
-
-        while (bridge.size() < size) {
-            bridge.add(bridgeNumberGenerator.generate());
-        }
-
-        return bridge;
     }
 }
