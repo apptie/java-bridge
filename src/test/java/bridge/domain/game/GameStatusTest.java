@@ -46,7 +46,6 @@ class GameStatusTest {
             @ParameterizedTest
             @CsvSource(
                 value = {
-                    "APPLICATION_START:true",
                     "MAKE_BRIDGE:true",
                     "GAME_PLAY:true",
                     "GAME_OVER:true",
