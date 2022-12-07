@@ -73,15 +73,13 @@ public class OutputView {
     }
 
     private enum GameSuccessMessage {
-        SUCCESS("성공", true),
-        FAILED("실패", false);
+        SUCCESS("성공"),
+        FAILED("실패");
 
         private final String message;
-        private final boolean success;
 
-        GameSuccessMessage(String message, boolean success) {
+        GameSuccessMessage(String message) {
             this.message = message;
-            this.success = success;
         }
 
         public static String MapToMessage(boolean success) {
