@@ -1,7 +1,6 @@
 package bridge.domain.game;
 
 public enum GameStatus {
-    APPLICATION_START,
     MAKE_BRIDGE,
     GAME_PLAY,
     GAME_OVER,
@@ -19,9 +18,6 @@ public enum GameStatus {
     }
 
     public boolean playable() {
-        if (this != GameStatus.APPLICATION_EXIT) {
-            return true;
-        }
-        return false;
+        return this != GameStatus.APPLICATION_EXIT;
     }
 }
