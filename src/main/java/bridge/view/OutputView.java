@@ -8,8 +8,6 @@ import bridge.dto.output.PrintResultDto;
 public class OutputView {
 
     private static final String LINE_FEED = "";
-    private static final String SUCCESS = "성공";
-    private static final String FAILED = "실패";
 
     private OutputView() {
     }
@@ -19,7 +17,7 @@ public class OutputView {
     }
 
     public static bridge.view.OutputView getInstance() {
-        return bridge.view.OutputView.OutputViewSingletonHelper.OUTPUT_VIEW;
+        return OutputViewSingletonHelper.OUTPUT_VIEW;
     }
 
     public void printMap(PrintMapDto printMapDto) {
@@ -39,7 +37,7 @@ public class OutputView {
         boolean success = printGameInfoDto.isSuccess();
         long tryCount = printGameInfoDto.getTryCount();
 
-        print(OutputViewMessage.GAME_RESULT.getFullMessage(MapToMessageFromSuccess(success)));
+        print(OutputViewMessage.GAME_RESULT.getFullMessage(GameSuccessMessage.MapToMessage(success)));
         print(OutputViewMessage.GAME_TRY_COUNT.getFullMessage(tryCount));
     }
 
@@ -47,13 +45,6 @@ public class OutputView {
         String exceptionMessage = printExceptionDto.getMessage();
 
         print(OutputViewMessage.EXCEPTION.getFullMessage(exceptionMessage));
-    }
-
-    private String MapToMessageFromSuccess(boolean success) {
-        if (success) {
-            return SUCCESS;
-        }
-        return FAILED;
     }
 
     private void print(String message) {
@@ -75,6 +66,26 @@ public class OutputView {
 
         private String getFullMessage(Object... replace) {
             return String.format(baseFormat, replace);
+        }
+    }
+
+    private enum GameSuccessMessage {
+        SUCCESS("성공", true),
+        FAILED("실패", false);
+
+        private final String message;
+        private final boolean success;
+
+        GameSuccessMessage(String message, boolean success) {
+            this.message = message;
+            this.success = success;
+        }
+
+        public static String MapToMessage(boolean success) {
+            if (success) {
+                return SUCCESS.message;
+            }
+            return FAILED.message;
         }
     }
 }
